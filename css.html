@@ -51,7 +51,7 @@
     <script>
     function cssFormatter() {
       var text = document.getElementById("textarea").value;
-      var textStr = text.toString()
+      var textStr = text.toString();
       var cssStr = textStr.replace(/\t/g, "")    //remove all tabs
                           .replace(/\n/g, "")    //remove all newlines
                           .replace(/    /g, ""); //remove all tabs that use spaces
