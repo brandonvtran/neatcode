@@ -55,7 +55,6 @@
                             .replace( />(.+?)<([a-zA-Z])/g, ">\n$1\n<$2") //add newline between brackets and text node between
                             .replace(/\?></, "?>\n<") //header for XML
         var xmlArray = xmlStr.split("\n")
-        var miniArray;
         var formatted;
 
         //xml case

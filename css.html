@@ -35,7 +35,7 @@
 
       <h4>Click the format button to make the CSS code easier to read</h4>
 
-      <button type="button" onclick="CSSFormatter()">Format</button>
+      <button type="button" onclick="cssFormatter()">Format</button>
 
     </div>
 
@@ -45,13 +45,29 @@
     </div>
 
     <script>
-    function CSSFormatter() {
-        //get text from text area
-        var text = document.getElementById("textarea").value;
-        var CSSObj = CSS.parse(text); //turn string from text area to CSS object
-        document.getElementById("formatted").innerHTML = "";
-        document.getElementById("formatted").appendChild(document.createTextNode(CSS.stringify(CSSObj, null, "\t"))); // stringify with tabs inserted at each level
+    function cssFormatter() {
+      var text = document.getElementById("textarea").value;
+      var textStr = text.toString()
+      var cssStr = textStr.replace(/\t/g, "")    //remove all tabs
+                          .replace(/\n/g, "")    //remove all newlines
+                          .replace(/    /g, ""); //remove all tabs that use spaces
+      var formatted;
 
+      //css case
+      if(textStr.indexOf("{") != -1 && textStr.indexOf("}") != -1) {
+
+        cssStr = cssStr.replace(/{/g, "{\n\t"); //when there is open bracket
+        cssStr = cssStr.replace(/;/g, ";\n\t"); //when there is a semicolon
+        cssStr = cssStr.replace(/\t}/g, "}");   //when there is a closing bracket
+        formatted = cssStr;
+      }
+      //not css code case
+      else {
+        formatted = "This text is not in CSS";
+      }
+
+      //print out formatted text
+      document.getElementById("formatted").innerHTML = formatted;
     }
     </script>
   </body>
