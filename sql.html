@@ -60,19 +60,24 @@
       var formatted;
 
       //sql case
-      if(textStr.indexOf("SELECT") != -1 || textStr.indexOf("select") != -1) {
+      if(textStr.indexOf("SELECT") != -1 || textStr.indexOf("select") != -1 ||
+        textStr.indexOf("ALTER TABLE") != -1 || textStr.indexOf("alter table") != -1 ||
+        textStr.indexOf("CREATE") != -1 || textStr.indexOf("create") != -1 ||
+        textStr.indexOf("DROP") != -1 || textStr.indexOf("drop") != -1 ||
+        textStr.indexOf("INSERT") != -1 || textStr.indexOf("insert") != -1 ||
+        textStr.indexOf("TRUNCATE TABLE") != -1 || textStr.indexOf("truncate table") != -1) {
 
         for (var i = 0; i < sqlArray.length; i++) {
           var word = sqlArray[i];
 
           //add newline before reserved sql word if it is reserved
           switch (word) {
+            //keywords that start at beginning -- do not do anything
             case "SELECT":
               sqlArray[i] = word;
               break;
-            case "select":
-              sqlArray[i] = word;
-              break;
+
+            //keywords that do not start at beginning
             case "FROM":
               sqlArray[i] = "\n" + word;
               break;
@@ -83,6 +88,96 @@
               sqlArray[i] = "\n" + word;
               break;
             case "where":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "AND":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "and":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "OR":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "or":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "AS":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "as":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "BETWEEN":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "between":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "EXISTS":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "exists":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "GROUP BY":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "group by":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "HAVING":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "having":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "IN":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "in":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "INNER JOIN":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "inner join":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "LEFT JOIN":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "left join":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "RIGHT JOIN":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "right join":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "FULL JOIN":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "full join":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "LIKE":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "like":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "ORDER BY":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "order by":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "UNION":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "union":
               sqlArray[i] = "\n" + word;
               break;
           }
