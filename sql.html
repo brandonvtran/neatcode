@@ -70,11 +70,20 @@
             case "SELECT":
               sqlArray[i] = word;
               break;
+            case "select":
+              sqlArray[i] = word;
+              break;
             case "FROM":
               sqlArray[i] = "\n" + word;
               break;
+            case "from":
+              sqlArray[i] = word;
+              break;
             case "WHERE":
               sqlArray[i] = "\n" + word;
+              break;
+            case "where":
+              sqlArray[i] = word;
               break;
           }
         }
