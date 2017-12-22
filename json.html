@@ -18,6 +18,7 @@
         box-sizing: border-box;
         width: 95%;
         min-height: 500px;
+        color: black;
       }
     </style>
   </head>
@@ -59,10 +60,12 @@
           var jsonObj = JSON.parse(text); //turn string from text area to JSON object
           document.getElementById("formatted").innerHTML = "";
           document.getElementById("formatted").appendChild(document.createTextNode(JSON.stringify(jsonObj, null, "\t"))); // stringify with tabs inserted at each level
+          document.getElementById("formatted").style.color = 'black';
         }
         //not json case
         else {
           document.getElementById("formatted").innerHTML = "This text is not in JSON";
+          document.getElementById("formatted").style.color = 'black';
         }
     }
     </script>

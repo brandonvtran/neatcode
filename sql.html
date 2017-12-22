@@ -18,6 +18,7 @@
         box-sizing: border-box;
         width: 95%;
         min-height: 500px;
+        color: black;
       }
     </style>
   </head>
@@ -50,12 +51,44 @@
 
     <script>
     function sqlFormatter() {
-        //get text from text area
-        var text = document.getElementById("textarea").value;
-        var SQLObj = SQL.parse(text); //turn string from text area to SQL object
-        document.getElementById("formatted").innerHTML = "";
-        document.getElementById("formatted").appendChild(document.createTextNode(SQL.stringify(SQLObj, null, "\t"))); // stringify with tabs inserted at each level
+      var text = document.getElementById("textarea").value;
+      var textStr = text.toString();
+      var sqlStr = textStr.replace(/\t/g, "")    //remove all tabs
+                          .replace(/\n/g, "")    //remove all newlines
+                          .replace(/    /g, ""); //remove all tabs that use spaces
+      var sqlArray = sqlStr.split(" ");
+      var formatted;
 
+      //sql case
+      if(textStr.indexOf("SELECT") != -1 || textStr.indexOf("select") != -1) {
+
+        for (var i = 0; i < sqlArray.length; i++) {
+          var word = sqlArray[i];
+
+          //add newline before reserved sql word if it is reserved
+          switch (word) {
+            case "SELECT":
+              sqlArray[i] = word;
+              break;
+            case "FROM":
+              sqlArray[i] = "\n" + word;
+              break;
+            case "WHERE":
+              sqlArray[i] = "\n" + word;
+              break;
+          }
+        }
+
+        formatted = sqlArray.join(" ");
+      }
+      //not css code case
+      else {
+        formatted = "This text is not in SQL";
+      }
+
+      //print out formatted text
+      document.getElementById("formatted").innerHTML = formatted;
+      document.getElementById("formatted").style.color = 'black';
     }
     </script>
   </body>
