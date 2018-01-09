@@ -64,9 +64,20 @@
       //css case
       if(textStr.indexOf("{") != -1 && textStr.indexOf("}") != -1) {
 
-        cssStr = cssStr.replace(/{/g, "{\n\t"); //when there is open bracket
-        cssStr = cssStr.replace(/;/g, ";\n\t"); //when there is a semicolon
-        cssStr = cssStr.replace(/\t}/g, "}");   //when there is a closing bracket
+        //when there is open bracket
+        if(textStr.indexOf(" {") != -1)
+          cssStr = cssStr.replace(/{/g, "{\n\t");
+        else if(textStr.indexOf("{"))
+          cssStr = cssStr.replace(/{/g, " {\n\t");
+
+        //when there is a semicolon
+        cssStr = cssStr.replace(/;/g, ";\n\t");
+
+        //when there is a closing bracket
+        if(textStr.indexOf(" }") != -1)
+          cssStr = cssStr.replace(/\t }/g, "}");
+        else if(textStr.indexOf("}"))
+          cssStr = cssStr.replace(/\t}/g, "}");
         formatted = cssStr;
       }
       //not css code case
